@@ -1,117 +1,172 @@
-import { useState } from "react";
-
 export default function App() {
-  const [cartCount, setCartCount] = useState(0);
-
-  const products = [
-    { id: 1, name: "Plastic Storage Box", price: 299, original: 499, image: "https://images.unsplash.com/photo-1588854337118-1c8c0b3b0f4d?w=400" },
-    { id: 2, name: "Kitchen Steel Containers (Set)", price: 599, original: 899, image: "https://images.unsplash.com/photo-1604908176997-431a1c85a5a6?w=400" },
-    { id: 3, name: "LED Emergency Light", price: 799, original: 1199, image: "https://images.unsplash.com/photo-1606813909358-2c7f6c1a9c3a?w=400" },
-    { id: 4, name: "Foldable Laundry Basket", price: 249, original: 399, image: "https://images.unsplash.com/photo-1616627980799-8cfcddc0a2a8?w=400" },
-    { id: 5, name: "Wall Mounted Cloth Hanger", price: 199, original: 349, image: "https://images.unsplash.com/photo-1598300051809-79f2e5b0d9b4?w=400" },
-    { id: 6, name: "Bathroom Organizer Rack", price: 349, original: 599, image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400" },
-    { id: 7, name: "Non-Stick Tawa", price: 499, original: 799, image: "https://images.unsplash.com/photo-1590080875795-8a9b0a9e9a9c?w=400" },
-    { id: 8, name: "Multipurpose Cleaning Mop", price: 399, original: 699, image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400" },
-  ];
-
   return (
     <div className="bg-gray-100 min-h-screen">
 
-      {/* TOP OFFER BAR */}
-      <div className="bg-green-600 text-white text-sm text-center py-2">
-        Free Delivery on Orders Above ₹499 | Extra 10% Off on First Order
-      </div>
+      {/* ================= NAVBAR ================= */}
+      <div className="bg-gray-900 text-white px-10 py-3 flex items-center justify-between">
+        {/* LOGO */}
+        <h1 className="text-2xl font-bold text-yellow-400">
+          Project_Homzo.in
+        </h1>
 
-      {/* NAVBAR */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-green-600">Homzo Mart</h1>
-
+        {/* SEARCH & DELIVERY GROUP */}
+        <div className="flex flex-1 items-center justify-start gap-6 ml-14">
           <input
             type="text"
-            placeholder="Search for household items..."
-            className="border px-4 py-2 rounded w-1/3 hidden md:block"
+            placeholder="Search Project Homzo.in"
+            className="w-full max-w-xl px-4 py-2 rounded-md text-black"
+          />
+          
+          <div className="cursor-pointer hover:text-yellow-400 whitespace-nowrap">
+            <p className="text-xs text-gray-200">Deliver to</p>
+            <p className="text-sm font-bold">India</p>
+          </div>
+        </div>
+
+        {/* USER ACTIONS */}
+        <div className="flex gap-6 text-sm">
+          <span className="cursor-pointer hover:text-yellow-400">Account</span>
+          <span className="cursor-pointer hover:text-yellow-400">Orders</span>
+          <span className="cursor-pointer hover:text-yellow-400">Cart (0)</span>
+        </div>
+      </div>
+
+      {/* ================= CATEGORY BAR ================= */}
+      <div className="bg-gray-800 text-white px-10 py-2 flex gap-8 text-sm">
+        <span className="hover:text-yellow-400 cursor-pointer">Kitchen</span>
+        <span className="hover:text-yellow-400 cursor-pointer">Home Decor</span>
+        <span className="hover:text-yellow-400 cursor-pointer">Home Improvement</span>
+        <span className="hover:text-yellow-400 cursor-pointer">Storage</span>
+        <span className="hover:text-yellow-400 cursor-pointer">Wall Accessories</span>
+      </div>
+
+      {/* ================= HERO SECTION ================= */}
+      <div className="mx-10 mt-6">
+        <div className="bg-gradient-to-r from-yellow-100 to-yellow-50 rounded-xl shadow-md p-12 flex items-center justify-between">
+
+          <div className="max-w-lg">
+            <h2 className="text-4xl font-bold mb-4">
+              Home Essentials Sale
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Upgrade Your Home With Modern and Premium Products.
+            </p>
+            <button className="bg-yellow-400 px-6 py-3 rounded-md font-semibold hover:bg-yellow-500 transition">
+              Shop Now
+            </button>
+          </div>
+
+          <img
+            src="https://plus.unsplash.com/premium_photo-1680382578857-c331ead9ed51"
+            alt="Hero"
+            className="w-100 h-80 object-cover rounded-xl"
           />
 
-          <div className="font-medium">
-            Cart ({cartCount})
-          </div>
-        </div>
-      </header>
-
-      {/* CATEGORY BAR */}
-      <div className="bg-white border-t border-b">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex gap-6 text-sm font-medium overflow-x-auto">
-          <span className="cursor-pointer hover:text-green-600">Kitchen</span>
-          <span className="cursor-pointer hover:text-green-600">Bathroom</span>
-          <span className="cursor-pointer hover:text-green-600">Storage</span>
-          <span className="cursor-pointer hover:text-green-600">Cleaning</span>
-          <span className="cursor-pointer hover:text-green-600">Lighting</span>
         </div>
       </div>
 
-      {/* SMALL BANNER */}
-      <div className="max-w-7xl mx-auto px-6 mt-6">
-        <div className="bg-white rounded-lg p-6 flex justify-between items-center">
-          <div>
-            <h2 className="text-xl font-bold">Best Deals on Home Essentials</h2>
-            <p className="text-gray-500 text-sm mt-1">
-              Save more on everyday products
-            </p>
+      {/* ================= MAIN CONTENT ================= */}
+      <div className="flex mx-10 mt-10 gap-8">
+
+        {/* SIDEBAR CONTAINER */}
+        <div className="w-1/8 space-y-6"> 
+          
+          {/* Box 1: Shop by Category */}
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <h3 className="font-bold mb-4 text-lg border-b pb-1">Shop by Category</h3>
+            <ul className="space-y-2 text-sm text-gray-900">
+              <li className="hover:text-yellow-500 cursor-pointer transition-colors">Kitchen</li>
+              <li className="hover:text-yellow-500 cursor-pointer transition-colors">Home Decor</li>
+              <li className="hover:text-yellow-500 cursor-pointer transition-colors">Home Improvement</li>
+              <li className="hover:text-yellow-500 cursor-pointer transition-colors">Storage</li>
+              <li className="hover:text-yellow-500 cursor-pointer transition-colors">Wall Accessories</li>
+            </ul>
           </div>
-          <button className="bg-green-600 text-white px-4 py-2 rounded text-sm">
-            Shop Now
-          </button>
+
+          {/* Box 2: Shop by Price */}
+          <div className="bg-white p-6 rounded-xl shadow-md">
+            <h3 className="font-bold mb-4 text-lg border-b pb-1">Shop by Price</h3>
+            <ul className="space-y-2 text-sm text-gray-900">
+              <li className="hover:text-yellow-500 cursor-pointer transition-colors">Under ₹500</li>
+              <li className="hover:text-yellow-500 cursor-pointer transition-colors">₹500 - ₹1,000</li>
+              <li className="hover:text-yellow-500 cursor-pointer transition-colors">₹1,000 - ₹2,000</li>
+              <li className="hover:text-yellow-500 cursor-pointer transition-colors">Over ₹2,000</li>
+            </ul>
+          </div>
+
         </div>
-      </div>
 
-      {/* PRODUCT GRID */}
-      <div className="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-        {products.map((product) => {
-          const discount = Math.round(
-            ((product.original - product.price) / product.original) * 100
-          );
+        {/* PRODUCTS GRID */}
+        <div className="w-4/5">
 
-          return (
-            <div key={product.id} className="bg-white p-4 rounded shadow hover:shadow-lg transition">
+          <h3 className="text-2xl font-bold mb-6">
+            Featured Products
+          </h3>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            {/* PRODUCT CARD 1 */}
+            <div className="bg-white rounded-xl shadow-md p-4 hover:shadow-xl transition">
               <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-32 object-cover rounded"
+                src="https://plus.unsplash.com/premium_photo-1679826780251-b68160114d32?"
+                alt="Product"
+                className="h-48 w-full object-cover rounded-md mb-4"
               />
-
-              <h3 className="mt-3 text-sm font-semibold">
-                {product.name}
-              </h3>
-
-              <div className="mt-1 flex items-center gap-2 text-sm">
-                <span className="font-bold text-black">
-                  ₹{product.price}
-                </span>
-                <span className="line-through text-gray-400">
-                  ₹{product.original}
-                </span>
-                <span className="text-green-600 font-medium">
-                  {discount}% off
-                </span>
-              </div>
-
-              <button
-                onClick={() => setCartCount(cartCount + 1)}
-                className="mt-3 w-full bg-green-600 text-white py-2 rounded text-sm hover:bg-green-700"
-              >
+              <h4 id="product-name" className="font-semibold mb-2">Homzo Premium Kitchen Steel Container</h4>
+              <p className="text-yello-500 font-bold mb-3">₹499</p>
+              <button id="Add-to-cart" className="w-full bg-yellow-400 py-2 rounded-md font-medium hover:bg-yellow-500 transition">
                 Add to Cart
               </button>
             </div>
-          );
-        })}
+
+            {/* PRODUCT CARD 2 */}
+            <div className="bg-white rounded-xl shadow-md p-4 hover:shadow-xl transition">
+              <img
+                src="https://images.unsplash.com/photo-1601232251778-81ba856938c8?"
+                alt="Product"
+                className="h-48 w-full object-cover rounded-md mb-4"
+              />
+              <h4 id="product-name" className="font-semibold mb-2">Homzo premium Foldable Laundry Basket</h4>
+              <div className="flex items-center gap-2 mb-3">
+                <p className="text-green-600 font-bold text-lg">₹299</p>
+                <p className="text-gray-400 line-through text-sm">₹350</p>
+                <span className="text-green-600 text-xs font-bold bg-green-100 px-2 py-0.5 rounded">
+                  14% OFF
+                </span>
+              </div>              
+              <button id="Add-to-cart" className="w-full bg-green-400 py-2 rounded-md font-medium hover:bg-yellow-500 transition">
+                Add to Cart
+              </button>
+            </div>
+
+            {/* PRODUCT CARD 3 */}
+            <div className="bg-white rounded-xl shadow-md p-4 hover:shadow-xl transition">
+              <img
+                src="https://plus.unsplash.com/premium_photo-1676410715645-dfe0429e32fe?"
+                alt="Product"
+                className="h-48 w-full object-cover rounded-md mb-4"
+              />
+              <h4 id="product-name" className="font-semibold mb-2">Homzo Premium Artificial Spring Flowers</h4>
+              <p className="text-yello-500 font-bold mb-3">₹699</p>
+              <button id="Add-to-cart" className="w-full bg-yellow-400 py-2 rounded-md font-medium hover:bg-yellow-500 transition">
+                Add to Cart
+              </button>
+            <div className="a-section a-spacing-none a-spacing-top-micro">
+              Only Few left!
+            </div>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      {/* FOOTER */}
-      <footer className="bg-white border-t mt-8 py-6 text-center text-sm text-gray-500">
-        © 2026 Homzo Mart | Affordable Household Essentials
-      </footer>
+      {/* ================= FOOTER ================= */}
+      <div className="bg-gray-900 text-white text-center py-6 mt-12">
+        © 2026 Project_Homzo-Patil & Group Co. All rights reserved.
+      </div>
+
     </div>
   );
 }
