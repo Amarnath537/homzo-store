@@ -2,136 +2,155 @@ import { useState } from "react";
 
 export default function App() {
   const [cartCount, setCartCount] = useState(0);
-  const [revenue, setRevenue] = useState(0);
 
   const products = [
     {
       id: 1,
       name: "Minimal Wall Shelf",
-      description: "Premium wooden floating shelf",
       price: 1299,
+      original: 1799,
+      rating: 4.5,
       image:
-        "https://images.unsplash.com/photo-1582582494700-c84b38c45b5b",
+        "https://images.unsplash.com/photo-1582582494700-c84b38c45b5b?w=500",
     },
     {
       id: 2,
       name: "Modern Table Lamp",
-      description: "Warm light aesthetic lamp",
       price: 899,
+      original: 1299,
+      rating: 4.2,
       image:
-        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c",
+        "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500",
     },
     {
       id: 3,
-      name: "Storage Organizer Box",
-      description: "Minimal fabric storage solution",
+      name: "Storage Organizer",
       price: 499,
+      original: 799,
+      rating: 4.7,
       image:
-        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500",
     },
     {
       id: 4,
       name: "Wooden Coffee Table",
-      description: "Scandinavian style living room table",
       price: 3499,
+      original: 4999,
+      rating: 4.8,
       image:
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500",
     },
   ];
 
-  const addToCart = (price) => {
-    setCartCount(cartCount + 1);
-    setRevenue(revenue + price);
-  };
-
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-100 min-h-screen">
 
       {/* NAVBAR */}
-      <header className="bg-white shadow-md sticky top-0 z-50">
+      <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800">
-            Homzo Store
-          </h1>
+          <div className="flex items-center gap-2">
+            <div className="bg-black text-white px-3 py-1 rounded font-bold">
+              H
+            </div>
+            <h1 className="text-xl font-bold">Homzo</h1>
+          </div>
 
           <input
             type="text"
-            placeholder="Search products..."
-            className="border rounded-lg px-4 py-2 w-1/3 hidden md:block"
+            placeholder="Search for products..."
+            className="border px-4 py-2 rounded w-1/3 hidden md:block"
           />
 
-          <div className="flex gap-6 text-gray-700 font-medium">
-            <span className="cursor-pointer hover:text-black">
-              Cart ({cartCount})
-            </span>
+          <div className="font-medium">
+            Cart ({cartCount})
           </div>
         </div>
       </header>
 
-      {/* HERO SECTION */}
-      <section className="bg-gray-100 py-16 text-center">
-        <h2 className="text-4xl font-bold mb-4">
-          Upgrade Your Home Aesthetics
+      {/* HERO */}
+      <section className="bg-white py-12 text-center">
+        <h2 className="text-3xl font-bold mb-3">
+          Modern Furniture Collection
         </h2>
-        <p className="text-gray-600 mb-6">
-          Discover modern furniture & decor curated for stylish living.
+        <p className="text-gray-500">
+          Premium quality furniture at best prices
         </p>
-        <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
-          Shop Now
-        </button>
       </section>
 
-      {/* ANALYTICS BAR */}
-      <div className="max-w-7xl mx-auto px-6 mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white shadow-md rounded-xl p-6">
-          <h3 className="text-gray-500">Items in Cart</h3>
-          <p className="text-3xl font-bold">{cartCount}</p>
-        </div>
-
-        <div className="bg-white shadow-md rounded-xl p-6">
-          <h3 className="text-gray-500">Total Revenue</h3>
-          <p className="text-3xl font-bold">₹{revenue}</p>
-        </div>
-      </div>
-
       {/* PRODUCT GRID */}
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-5"
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-48 object-cover rounded-xl mb-4"
-            />
+      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-6">
 
-            <h2 className="text-lg font-semibold text-gray-800">
-              {product.name}
-            </h2>
+        {products.map((product) => {
+          const discount = Math.round(
+            ((product.original - product.price) /
+              product.original) *
+              100
+          );
 
-            <p className="text-gray-500 mb-2">
-              {product.description}
-            </p>
-
-            <p className="text-xl font-bold text-black mb-3">
-              ₹{product.price}
-            </p>
-
-            <button
-              onClick={() => addToCart(product.price)}
-              className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition"
+          return (
+            <div
+              key={product.id}
+              className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition"
             >
-              Add to Cart
-            </button>
-          </div>
-        ))}
+              <div className="relative">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-full h-40 object-cover rounded"
+                />
+                <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                  {discount}% OFF
+                </span>
+              </div>
+
+              <h3 className="mt-3 font-semibold text-sm">
+                {product.name}
+              </h3>
+
+              <div className="text-yellow-500 text-sm">
+                ⭐ {product.rating}
+              </div>
+
+              <div className="mt-2 flex items-center gap-2">
+                <span className="font-bold">
+                  ₹{product.price}
+                </span>
+                <span className="line-through text-gray-400 text-sm">
+                  ₹{product.original}
+                </span>
+              </div>
+
+              <button
+                onClick={() =>
+                  setCartCount(cartCount + 1)
+                }
+                className="mt-3 w-full bg-black text-white py-2 rounded text-sm hover:bg-gray-800"
+              >
+                Add to Cart
+              </button>
+            </div>
+          );
+        })}
       </div>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t mt-10 py-6 text-center text-gray-500">
-        © 2026 Homzo Store. All rights reserved.
+      <footer className="bg-white mt-10 py-8 border-t">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-6 text-sm text-gray-600">
+          <div>
+            <h4 className="font-bold mb-2">About</h4>
+            <p>Homzo is your destination for modern home decor.</p>
+          </div>
+          <div>
+            <h4 className="font-bold mb-2">Customer Service</h4>
+            <p>Returns</p>
+            <p>Shipping</p>
+            <p>Support</p>
+          </div>
+          <div>
+            <h4 className="font-bold mb-2">Contact</h4>
+            <p>Email: support@homzo.com</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
